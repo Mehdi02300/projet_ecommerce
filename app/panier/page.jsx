@@ -1,3 +1,9 @@
+import Cart from "@/components/Sections/Cart/Cart";
+
 export default function Panier() {
-  return <div>Panier</div>;
+  return (
+    <div>
+      <Cart />
+    </div>
+  );
 }

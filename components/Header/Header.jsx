@@ -4,12 +4,17 @@ import { ShoppingBag, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
+import { utiliserPanier } from "@/context/CartContext";
 
 const Header = () => {
   const pathname = usePathname();
+  const { panier } = utiliserPanier();
+
+  // Calcul du nombre total d'articles dans le panier
+  const totalArticles = panier.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <header className="flex justify-between items-center py-5">
+    <header className="flex justify-between items-center h-[80px]">
       <div className="flex gap-2">
         <ShoppingBag />
         <span>Shopika</span>
@@ -19,7 +24,7 @@ const Header = () => {
           href="/"
           className={classNames(
             "hover:bg-[#495057] px-5 py-3 rounded-full",
-            pathname === "/" ? "bg-primary" : "" // Si on est sur la page d'accueil
+            pathname === "/" ? "bg-primary hover:bg-primary" : ""
           )}
         >
           Accueil
@@ -28,7 +33,7 @@ const Header = () => {
           href="/produits"
           className={classNames(
             "hover:bg-[#495057] px-5 py-3 rounded-full",
-            pathname === "/produits" ? "bg-primary" : ""
+            pathname === "/produits" ? "bg-primary hover:bg-primary" : ""
           )}
         >
           Produits
@@ -37,7 +42,7 @@ const Header = () => {
           href="/a-propos"
           className={classNames(
             "hover:bg-[#495057] px-5 py-3 rounded-full",
-            pathname === "/a-propos" ? "bg-primary" : ""
+            pathname === "/a-propos" ? "bg-primary hover:bg-primary" : ""
           )}
         >
           À propos
@@ -46,7 +51,7 @@ const Header = () => {
           href="/contact"
           className={classNames(
             "hover:bg-[#495057] px-5 py-3 rounded-full",
-            pathname === "/contact" ? "bg-primary" : ""
+            pathname === "/contact" ? "bg-primary hover:bg-primary" : ""
           )}
         >
           Contact
@@ -54,7 +59,7 @@ const Header = () => {
       </nav>
       <Link href="/panier" className="flex gap-2">
         <ShoppingCart />
-        <span>Panier</span>
+        <span>Panier ({totalArticles})</span>
       </Link>
     </header>
   );

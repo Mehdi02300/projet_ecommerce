@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Button = ({ children, theme = "primary", href, onClick }) => {
+const Button = ({ children, theme, href, onClick }) => {
   const className = `${
     theme === "primary" ? "bg-primary hover:bg-[#0056b3]" : "bg-tertiary hover:bg-[#495057]"
   } px-5 py-2 text-white rounded-xl transition-colors duration-200`;
