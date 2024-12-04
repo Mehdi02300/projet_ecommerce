@@ -41,44 +41,34 @@ export default function ProduitDetails() {
   if (chargement) {
     return (
       <div className="flex justify-center items-center h-screen">
-        {" "}
-        <p className="text-lg font-semibold">Chargement des détails du produit...</p>{" "}
+        <p className="text-lg font-semibold">Chargement des détails du produit...</p>
       </div>
     );
   }
   if (!produitDetails) {
     return (
       <div className="flex justify-center items-center h-screen">
-        {" "}
-        <p className="text-lg font-semibold text-red-500">Produit introuvable.</p>{" "}
+        <p className="text-lg font-semibold text-red-500">Produit introuvable.</p>
       </div>
     );
   }
   return (
     <Container>
-      {" "}
-      <button onClick={() => router.back()} className="flex gap-2 mb-5 mt-5">
-        {" "}
-        <ArrowLeft /> <span>Retour</span>{" "}
-      </button>{" "}
-      <div className="flex flex-col md:flex-row gap-8">
-        {" "}
-        <img
-          src={produitDetails.image}
-          alt={produitDetails.name}
-          className="w-full md:w-1/2 h-auto object-cover rounded-lg shadow-lg"
-        />{" "}
-        <div>
-          {" "}
-          <h1 className="text-3xl font-bold mb-4">{produitDetails.name}</h1>{" "}
-          <p className="text-gray-700 text-lg mb-6">{produitDetails.description}</p>{" "}
-          <p className="text-black font-bold text-2xl mb-6">{produitDetails.price} €</p>{" "}
-          <Button theme="primary" onClick={handleAjouterAuPanier}>
-            {" "}
-            Ajouter au panier{" "}
-          </Button>{" "}
-        </div>{" "}
-      </div>{" "}
+      <section className="h-screen">
+        <button onClick={() => router.back()} className="flex gap-2 mb-5 mt-32">
+          <ArrowLeft /> <span>Retour</span>
+        </button>
+        <div className="flex flex-col md:flex-row gap-8">
+          <img src={produitDetails.image} alt={produitDetails.name} className="w-full md:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
+          <div>
+            <h1 className="text-3xl font-bold mb-4">{produitDetails.name}</h1> <p className="text-gray-700 text-lg mb-6">{produitDetails.description}</p>{" "}
+            <p className="text-black font-bold text-2xl mb-6">{produitDetails.price} €</p>{" "}
+            <Button theme="primary" onClick={handleAjouterAuPanier}>
+              Ajouter au panier
+            </Button>
+          </div>
+        </div>
+      </section>
     </Container>
   );
 }

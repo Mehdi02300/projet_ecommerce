@@ -9,7 +9,7 @@ export default function Cart() {
 
   if (panier.length === 0) {
     return (
-      <div className="h-[500px] flex items-center justify-center">
+      <div className="h-screen flex items-center justify-center">
         <p className="font-bold text-xl">Votre panier est vide.</p>
       </div>
     );
@@ -19,21 +19,14 @@ export default function Cart() {
 
   return (
     <Container>
-      <div className="min-h-[500px] flex flex-col">
+      <div className="min-h-screen pt-32 flex flex-col">
         <h2 className="text-4xl font-bold mb-10">Mon Panier</h2>
         <div className="flex-1 flex flex-col justify-between h-full">
           <div>
             {panier.map((produit) => (
-              <div
-                key={produit.id}
-                className="flex justify-between items-center mb-4 border-t border-b py-5"
-              >
+              <div key={produit.id} className="flex justify-between items-center mb-4 border-t border-b py-5">
                 <div className="flex items-start gap-5">
-                  <img
-                    src={produit.image}
-                    alt={produit.name}
-                    className="w-32 h-auto object-cover rounded-lg shadow-lg"
-                  />
+                  <img src={produit.image} alt={produit.name} className="w-32 h-auto object-cover rounded-lg shadow-lg" />
                   <div className="flex flex-col">
                     <p className="text-xl font-bold">{produit.name}</p>
                     <p>{produit.price} €</p>
@@ -44,7 +37,7 @@ export default function Cart() {
               </div>
             ))}
           </div>
-          <div className="mt-4 text-end">
+          <div className="my-4 text-end">
             <p className="font-bold">Total: {total} €</p>
             <Button theme="primary">Passer à la caisse</Button>
           </div>

@@ -22,18 +22,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  console.log("Layout rendu");
   return (
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondary`}>
         <CartProvider>
-          <Container>
-            <Header />
-          </Container>
+          <Header />
           {children}
-          <Container>
-            <Footer />
-          </Container>
+          <Footer />
         </CartProvider>
       </body>
     </html>
