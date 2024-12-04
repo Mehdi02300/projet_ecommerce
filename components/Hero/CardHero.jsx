@@ -1,6 +1,6 @@
 const CardHero = () => {
   return (
-    <div className="flex items-center gap-10 absolute -left-4 bottom-0 -right-4 overflow-hidden">
+    <div className="flex items-center gap-10 overflow-hidden">
       {cards.map((card, index) => (
         <div key={index}>
           <img
