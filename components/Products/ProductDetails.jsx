@@ -15,6 +15,7 @@ export default function ProduitDetails() {
   const [produitDetails, setProduitDetails] = useState(null);
   const [chargement, setChargement] = useState(true);
   const { id } = useParams();
+
   useEffect(() => {
     const recupererProduit = async () => {
       if (!id) return;
@@ -33,11 +34,13 @@ export default function ProduitDetails() {
     };
     recupererProduit();
   }, [id]);
+
   const handleAjouterAuPanier = () => {
     if (produitDetails) {
       ajouterAuPanier(produitDetails);
     }
   };
+
   if (chargement) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -45,6 +48,7 @@ export default function ProduitDetails() {
       </div>
     );
   }
+
   if (!produitDetails) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -52,6 +56,7 @@ export default function ProduitDetails() {
       </div>
     );
   }
+
   return (
     <Container>
       <section className="h-screen">
@@ -59,10 +64,13 @@ export default function ProduitDetails() {
           <ArrowLeft /> <span>Retour</span>
         </button>
         <div className="flex flex-col md:flex-row gap-8">
-          <img src={produitDetails.image} alt={produitDetails.name} className="w-full md:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
+          <div className="w-full md:w-1/2 aspect-square relative">
+            <img src={produitDetails.imageUrl} alt={produitDetails.name} className="absolute inset-0 w-full h-full object-contain rounded-lg shadow-lg" />
+          </div>
           <div>
-            <h1 className="text-3xl font-bold mb-4">{produitDetails.name}</h1> <p className="text-gray-700 text-lg mb-6">{produitDetails.description}</p>{" "}
-            <p className="text-black font-bold text-2xl mb-6">{produitDetails.price} €</p>{" "}
+            <h1 className="text-3xl font-bold mb-4">{produitDetails.name}</h1>
+            <p className="text-gray-700 text-lg mb-6">{produitDetails.description}</p>
+            <p className="text-black font-bold text-2xl mb-6">{produitDetails.price} €</p>
             <Button theme="primary" onClick={handleAjouterAuPanier}>
               Ajouter au panier
             </Button>

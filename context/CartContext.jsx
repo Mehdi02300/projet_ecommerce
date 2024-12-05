@@ -47,9 +47,7 @@ export const CartProvider = ({ children }) => {
       const produitDéjàDansPanier = panierPrécedent.find((item) => item.id === produit.id);
       if (produitDéjàDansPanier) {
         // Si le produit est déjà dans le panier, on incrémente la quantité
-        return panierPrécedent.map((item) =>
-          item.id === produit.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
+        return panierPrécedent.map((item) => (item.id === produit.id ? { ...item, quantity: item.quantity + 1 } : item));
       } else {
         // Sinon, on ajoute le produit avec une quantité de 1
         return [...panierPrécedent, { ...produit, quantity: 1 }];
@@ -68,15 +66,21 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // Augmenter la quantite
+  const augmenterQuantite = (id) => {
+    setPanier((prev) => prev.map((produit) => (produit.id === id ? { ...produit, quantity: produit.quantity + 1 } : produit)));
+  };
+
+  // Diminuer la quantite
+  const diminuerQuantite = (id) => {
+    setPanier((prev) => prev.map((produit) => (produit.id === id ? { ...produit, quantity: produit.quantity > 1 ? produit.quantity - 1 : 1 } : produit)));
+  };
+
   // Vider le panier
   const viderLePanier = () => {
     setPanier([]);
     localStorage.removeItem("panier");
   };
 
-  return (
-    <CartContext.Provider value={{ panier, ajouterAuPanier, supprimerDuPanier, viderLePanier }}>
-      {children}
-    </CartContext.Provider>
-  );
+  return <CartContext.Provider value={{ panier, ajouterAuPanier, supprimerDuPanier, viderLePanier, augmenterQuantite, diminuerQuantite }}>{children}</CartContext.Provider>;
 };
