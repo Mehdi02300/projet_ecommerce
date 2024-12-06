@@ -25,7 +25,11 @@ const Product = ({ product, onDelete }) => {
   return (
     <div className="border p-4 w-full rounded-xl">
       <div className="relative h-[200px]">
-        <img src={product.imageUrl} alt={product.name} className="absolute inset-0 w-full h-full object-contain" />
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className="absolute inset-0 w-full h-full object-contain"
+        />
       </div>
       <h3 className="text-xl">{product.name}</h3>
       <p>{product.price}€</p>

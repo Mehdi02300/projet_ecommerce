@@ -49,7 +49,7 @@ const AdminDashboard = () => {
 
   return (
     <Container>
-      <div className="h-screen mt-32">
+      <div className="min-h-screen mt-32">
         <div className="mb-10">
           <AddProduct />
         </div>

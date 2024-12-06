@@ -88,25 +88,52 @@ const EditProduct = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block mb-2">Nom du produit:</label>
-            <input type="text" className="w-full p-2 border rounded" value={productName} onChange={(e) => setProductName(e.target.value)} required />
+            <input
+              type="text"
+              className="w-full p-2 border rounded"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+              required
+            />
           </div>
 
           <div>
             <label className="block mb-2">Prix du produit:</label>
-            <input type="number" className="w-full p-2 border rounded" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} required />
+            <input
+              type="number"
+              className="w-full p-2 border rounded"
+              value={productPrice}
+              onChange={(e) => setProductPrice(e.target.value)}
+              required
+            />
           </div>
 
           <div>
             <label className="block mb-2">Description du produit:</label>
-            <input type="number" className="w-full p-2 border rounded" value={productDescription} onChange={(e) => setProductDescription(e.target.value)} required />
+            <input
+              type="text"
+              className="w-full p-2 border rounded"
+              value={productDescription}
+              onChange={(e) => setProductDescription(e.target.value)}
+              required
+            />
           </div>
 
           <div>
             <label className="block mb-2">Image du produit:</label>
-            <input type="file" className="w-full p-2 border rounded" accept="image/*" onChange={(e) => setProductImage(e.target.files[0])} />
+            <input
+              type="file"
+              className="w-full p-2 border rounded"
+              accept="image/*"
+              onChange={(e) => setProductImage(e.target.files[0])}
+            />
           </div>
 
-          <button type="submit" disabled={loading} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400">
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
+          >
             {loading ? "Mise à jour..." : "Mettre à jour le produit"}
           </button>
         </form>

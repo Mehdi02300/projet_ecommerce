@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 
 // Constants
-const SESSION_DURATION = 60 * 60 * 24 * 5 * 1000; // 5 days in milliseconds
+const SESSION_DURATION = 60 * 60 * 24 * 1000;
 const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
@@ -16,11 +16,14 @@ export async function handleLogin(token) {
 
   try {
     // Verify token with Firebase
-    const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ idToken: token }),
-    });
+    const response = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken: token }),
+      }
+    );
 
     if (!response.ok) return { error: "Authentification échouée" };
 

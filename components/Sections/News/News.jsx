@@ -9,7 +9,7 @@ const News = () => {
       <Container>
         <div className="flex items-center justify-between">
           <h2 className="text-4xl font-semibold mb-5">Nouveautés</h2>
-          <Link href="/produits" className="flex gap-2">
+          <Link href="/produits" className="flex gap-2 hover:underline">
             <span>Voir tout</span>
             <ArrowRight />
           </Link>

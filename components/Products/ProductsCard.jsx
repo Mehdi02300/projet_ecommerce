@@ -33,20 +33,24 @@ const ProductsCard = ({ className }) => {
 
   return (
     <Container>
-      <div className={` ${className}`}>
+      <div>
         <h1 className="text-2xl font-bold mb-4">Nos produits</h1>
         {loading ? (
           <div className="flex justify-center items-center h-40">
             <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-tertiary"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-3/4 mx-auto">
             {produits.map((produit) => (
               <div key={produit.id}>
-                <div className="border rounded-lg p-4 bg-white shadow-lg hover:scale-105 duration-300">
+                <div className="border rounded-lg p-4 bg-white shadow-lg hover:scale-105 duration-300 h-96">
                   <Link href={`/produits/${produit.id}`}>
                     <div className="aspect-square relative mb-2">
-                      <img src={produit.imageUrl} alt={produit.name} className="absolute inset-0 w-full h-full object-contain rounded" />
+                      <img
+                        src={produit.imageUrl}
+                        alt={produit.name}
+                        className="absolute inset-0 w-full h-full object-contain rounded"
+                      />
                     </div>
                     <h2 className="text-xl">{produit.name}</h2>
                     <p className="text-gray-600">{produit.description}</p>

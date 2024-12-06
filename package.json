@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "classnames": "^2.5.1",
     "firebase": "^11.0.2",
     "lucide-react": "^0.464.0",

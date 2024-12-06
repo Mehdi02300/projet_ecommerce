@@ -9,7 +9,7 @@ const Produits = () => {
   const [categorie, setCategorie] = useState("all");
 
   return (
-    <Container className={"h-screen mt-32"}>
+    <Container className={"min-h-screen mt-32"}>
       <Filter setCategorie={setCategorie} />
       <ProductsCard categorie={categorie} />
     </Container>
