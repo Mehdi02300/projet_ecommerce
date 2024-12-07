@@ -8,7 +8,7 @@ import Button from "../ui/Button";
 import { utiliserPanier } from "@/context/CartContext";
 import Container from "../ui/Container";
 
-const ProductsCard = ({ className }) => {
+const ProductsCard = ({ limit }) => {
   const [produits, setProduits] = useState([]);
   const [loading, setLoading] = useState(true);
   const { ajouterAuPanier } = utiliserPanier();
@@ -31,19 +31,25 @@ const ProductsCard = ({ className }) => {
     ajouterAuPanier(produit);
   };
 
+  const produitsAffiches = limit ? produits.slice(0, limit) : produits;
+
   return (
     <Container>
       <div>
-        <h1 className="text-2xl font-bold mb-4">Nos produits</h1>
+        <h1 className={`text-2xl font-bold mb-4 ${limit && "hidden"}`}>Nos produits</h1>
         {loading ? (
           <div className="flex justify-center items-center h-40">
             <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-tertiary"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-3/4 mx-auto">
-            {produits.map((produit) => (
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 ${
+              limit ? "lg:grid-cols-3" : "lg:grid-cols-4"
+            } gap-4 mx-auto`}
+          >
+            {produitsAffiches.map((produit) => (
               <div key={produit.id}>
-                <div className="border rounded-lg p-4 bg-white shadow-lg hover:scale-105 duration-300 h-96">
+                <div className="border rounded-lg p-4 bg-white shadow-lg hover:scale-105 duration-300 min-h-[410px]">
                   <Link href={`/produits/${produit.id}`}>
                     <div className="aspect-square relative mb-2">
                       <img

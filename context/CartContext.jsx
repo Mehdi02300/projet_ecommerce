@@ -23,11 +23,11 @@ export const CartProvider = ({ children }) => {
         if (Array.isArray(panierParsed)) {
           setPanier(panierParsed);
         } else {
-          localStorage.removeItem("panier"); // Si ce n'est pas un tableau, on le supprime
+          localStorage.removeItem("panier");
         }
       } catch (erreur) {
         console.error("Erreur lors du chargement du panier depuis localStorage:", erreur);
-        localStorage.removeItem("panier"); // Nettoyage en cas d'erreur de parsing
+        localStorage.removeItem("panier");
       }
     }
   }, []);
@@ -37,7 +37,7 @@ export const CartProvider = ({ children }) => {
     if (panier.length > 0) {
       localStorage.setItem("panier", JSON.stringify(panier));
     } else {
-      localStorage.removeItem("panier"); // Si panier vide, supprimer du localStorage
+      localStorage.removeItem("panier");
     }
   }, [panier]);
 
@@ -47,7 +47,9 @@ export const CartProvider = ({ children }) => {
       const produitDéjàDansPanier = panierPrécedent.find((item) => item.id === produit.id);
       if (produitDéjàDansPanier) {
         // Si le produit est déjà dans le panier, on incrémente la quantité
-        return panierPrécedent.map((item) => (item.id === produit.id ? { ...item, quantity: item.quantity + 1 } : item));
+        return panierPrécedent.map((item) =>
+          item.id === produit.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
       } else {
         // Sinon, on ajoute le produit avec une quantité de 1
         return [...panierPrécedent, { ...produit, quantity: 1 }];
@@ -68,12 +70,22 @@ export const CartProvider = ({ children }) => {
 
   // Augmenter la quantite
   const augmenterQuantite = (id) => {
-    setPanier((prev) => prev.map((produit) => (produit.id === id ? { ...produit, quantity: produit.quantity + 1 } : produit)));
+    setPanier((prev) =>
+      prev.map((produit) =>
+        produit.id === id ? { ...produit, quantity: produit.quantity + 1 } : produit
+      )
+    );
   };
 
   // Diminuer la quantite
   const diminuerQuantite = (id) => {
-    setPanier((prev) => prev.map((produit) => (produit.id === id ? { ...produit, quantity: produit.quantity > 1 ? produit.quantity - 1 : 1 } : produit)));
+    setPanier((prev) =>
+      prev.map((produit) =>
+        produit.id === id
+          ? { ...produit, quantity: produit.quantity > 1 ? produit.quantity - 1 : 1 }
+          : produit
+      )
+    );
   };
 
   // Vider le panier
@@ -82,5 +94,18 @@ export const CartProvider = ({ children }) => {
     localStorage.removeItem("panier");
   };
 
-  return <CartContext.Provider value={{ panier, ajouterAuPanier, supprimerDuPanier, viderLePanier, augmenterQuantite, diminuerQuantite }}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider
+      value={{
+        panier,
+        ajouterAuPanier,
+        supprimerDuPanier,
+        viderLePanier,
+        augmenterQuantite,
+        diminuerQuantite,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 };

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { utiliserPanier } from "@/context/CartContext";
 import Container from "../ui/Container";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const pathname = usePathname();
@@ -13,6 +14,18 @@ const Header = () => {
 
   // Calcul du nombre total d'articles dans le panier
   const totalArticles = panier.reduce((acc, item) => acc + item.quantity, 0);
+
+  // État pour déclencher l'animation
+  const [animate, setAnimate] = useState(false);
+
+  // Déclencher l'animation lorsque `totalArticles` change
+  useEffect(() => {
+    if (totalArticles > 0) {
+      setAnimate(true);
+      const timer = setTimeout(() => setAnimate(false), 300); // Animation dure 300ms
+      return () => clearTimeout(timer);
+    }
+  }, [totalArticles]);
 
   return (
     <header
@@ -65,7 +78,11 @@ const Header = () => {
         </nav>
         <Link href="/panier" className="relative flex gap-2 hover:scale-105 duration-150">
           <ShoppingCart />
-          <span className="absolute -right-2 -bottom-1 bg-primary text-white font-bold px-[5px] pt-[1px] rounded-full text-xs">
+          <span
+            className={`absolute -right-2 -bottom-1 bg-primary text-white font-bold px-[5px] pt-[1px] rounded-full text-xs transition-transform ${
+              animate ? "animate-bounce" : ""
+            }`}
+          >
             {totalArticles}
           </span>
         </Link>
