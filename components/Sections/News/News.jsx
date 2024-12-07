@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const News = () => {
   return (
-    <section className="my-32">
+    <section className="my-36 relative">
       <Container>
         <div className="flex flex-col md:flex-row items-center justify-between w-3/4 mx-auto mb-10">
           <h2 className="text-4xl font-semibold mb-5">Nouveautés</h2>
@@ -14,7 +14,7 @@ const News = () => {
             <ArrowRight />
           </Link>
         </div>
-        <ProductsCard limit={3} className={"mt-0 md:h-1/2"} />
+        <ProductsCard limit={3} />
       </Container>
     </section>
   );

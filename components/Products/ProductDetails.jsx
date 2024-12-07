@@ -60,12 +60,16 @@ export default function ProduitDetails() {
   return (
     <Container>
       <section className="h-screen">
-        <button onClick={() => router.back()} className="flex gap-2 mb-5 mt-32">
+        <button onClick={() => router.back()} className="flex gap-2 mb-5 mt-32 hover:underline">
           <ArrowLeft /> <span>Retour</span>
         </button>
         <div className="flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-1/2 aspect-square relative">
-            <img src={produitDetails.imageUrl} alt={produitDetails.name} className="absolute inset-0 w-full h-full object-contain rounded-lg shadow-lg" />
+            <img
+              src={produitDetails.imageUrl}
+              alt={produitDetails.name}
+              className="absolute inset-0 w-full h-full object-contain rounded-lg shadow-lg"
+            />
           </div>
           <div>
             <h1 className="text-3xl font-bold mb-4">{produitDetails.name}</h1>

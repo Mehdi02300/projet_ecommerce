@@ -1,10 +1,12 @@
 "use client";
+
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/db/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { handleLogin } from "@/actions/auth.action";
-import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import Button from "@/components/ui/Button";
 
 const FormLogin = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -44,12 +46,12 @@ const FormLogin = () => {
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <form onSubmit={onSubmit} className="relative p-6 lg:p-12 bg-n-6 rounded shadow-lg lg:rounded-xl w-80 lg:w-[500px]">
-        <button type="button" onClick={() => router.push("/")} className="absolute text-lg top-4 left-4 flex items-center text-n-9 hover:text-n-7">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7 mr-1">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          Retour
+      <form
+        onSubmit={onSubmit}
+        className="relative p-6 lg:p-12 bg-n-6 rounded shadow-lg lg:rounded-xl w-80 lg:w-[500px]"
+      >
+        <button onClick={() => router.push("/")} className="flex gap-2 mb-5 hover:underline">
+          <ArrowLeft /> <span>Retour</span>
         </button>
 
         <h2 className="h2 text-center">Connexion</h2>
@@ -88,10 +90,9 @@ const FormLogin = () => {
               disabled={isLoading}
             />
           </div>
-
-          <button type="submit" disabled={isLoading} className="w-full px-5 py-3 text-black bg-n-9 rounded-xl hover:bg-n-7 animate disabled:opacity-50">
-            {isLoading ? "Connexion..." : "Se connecter"}
-          </button>
+          <div className="text-center">
+            <Button theme="primary">{isLoading ? "Connexion..." : "Se connecter"}</Button>
+          </div>
         </div>
       </form>
     </div>

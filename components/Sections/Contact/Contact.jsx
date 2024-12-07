@@ -51,22 +51,20 @@ export default function Contact() {
               ></textarea>
             </div>
 
-            <Button theme="primary" type="submit" className="w-full">
-              Envoyer
-            </Button>
+            <Button theme="primary">Envoyer</Button>
           </form>
         </section>
 
         <section className="space-y-6">
           <h2 className="text-2xl font-semibold">Nous contacter directement</h2>
           <div className="space-y-4">
-            <p className="text-lg">
+            <p>
               <span className="font-semibold">Email :</span> support@shopika.com
             </p>
-            <p className="text-lg">
+            <p>
               <span className="font-semibold">Téléphone :</span> +33 1 23 45 67 89
             </p>
-            <p className="text-lg">
+            <p>
               <span className="font-semibold">Adresse :</span> 123 Rue de Commerce, 75001 Paris,
               France
             </p>

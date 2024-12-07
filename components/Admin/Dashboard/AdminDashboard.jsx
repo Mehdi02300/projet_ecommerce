@@ -8,6 +8,7 @@ import { auth, db } from "@/db/firebaseConfig";
 import Product from "./Product";
 import Container from "@/components/ui/Container";
 import AddProduct from "./AddProduct";
+import Button from "@/components/ui/Button";
 
 const AdminDashboard = () => {
   const [products, setProducts] = useState([]);
@@ -50,14 +51,14 @@ const AdminDashboard = () => {
   return (
     <Container>
       <div className="min-h-screen mt-32">
-        <div className="mb-10">
-          <AddProduct />
+        <div className="flex items-center justify-between mb-10">
+          <Button href={"/admin/accueil/creer-produit"}>Ajouter un produit</Button>
+          <button onClick={handleSignOut} className="text-red-500 hover:font-bold">
+            Déconnexion
+          </button>
         </div>
+        <h2 className="text-xl mb-5">Liste des produits</h2>
 
-        <h2>Liste des produits</h2>
-        <button onClick={handleSignOut} className="text-red-500">
-          Déconnexion
-        </button>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {products.map((product) => (
             <Product key={product.id} product={product} onDelete={handleProductDelete} />

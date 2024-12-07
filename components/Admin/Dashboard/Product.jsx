@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
-import { db, storage } from "@/db/firebaseConfig";
+import { db } from "@/db/firebaseConfig";
 import { doc, deleteDoc } from "firebase/firestore";
 
 const Product = ({ product, onDelete }) => {
@@ -35,7 +35,7 @@ const Product = ({ product, onDelete }) => {
       <p>{product.price}€</p>
       <p className="text-black/50 my-5">{product.description}</p>
       <div className="flex items-center justify-between">
-        <button onClick={handleDelete} className="text-red-500">
+        <button onClick={handleDelete} className="text-red-500 hover:font-bold">
           Supprimer
         </button>
         <Button onClick={handleEdit}>Modifier</Button>

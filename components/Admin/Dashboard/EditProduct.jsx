@@ -7,6 +7,7 @@ import { db, storage } from "@/db/firebaseConfig";
 import { useParams, useRouter } from "next/navigation";
 import Container from "@/components/ui/Container";
 import { ArrowLeft } from "lucide-react";
+import Button from "@/components/ui/Button";
 
 const EditProduct = () => {
   const [productName, setProductName] = useState("");
@@ -78,66 +79,67 @@ const EditProduct = () => {
   };
 
   return (
-    <Container className={"h-screen mt-32"}>
-      <button onClick={() => router.back()} className="flex gap-2 mb-10">
+    <Container className={"h-screen"}>
+      <button onClick={() => router.back()} className="flex gap-2 mt-32 hover:underline">
         <ArrowLeft /> <span>Retour</span>
       </button>
-      <div className="">
-        <h2 className="text-2xl mb-4">Modifier le produit</h2>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block mb-2">Nom du produit:</label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded"
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
-              required
-            />
-          </div>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg space-y-6"
+      >
+        <h2 className="text-2xl font-bold text-gray-800 text-center">Mettre à jour un produit</h2>
 
-          <div>
-            <label className="block mb-2">Prix du produit:</label>
-            <input
-              type="number"
-              className="w-full p-2 border rounded"
-              value={productPrice}
-              onChange={(e) => setProductPrice(e.target.value)}
-              required
-            />
-          </div>
+        <div className="space-y-2">
+          <label className="block text-gray-700 font-semibold">Nom du produit:</label>
+          <input
+            type="text"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
+            required
+            placeholder="Entrez le nom du produit"
+          />
+        </div>
 
-          <div>
-            <label className="block mb-2">Description du produit:</label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded"
-              value={productDescription}
-              onChange={(e) => setProductDescription(e.target.value)}
-              required
-            />
-          </div>
+        <div className="space-y-2">
+          <label className="block text-gray-700 font-semibold">Prix du produit:</label>
+          <input
+            type="number"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            value={productPrice}
+            onChange={(e) => setProductPrice(e.target.value)}
+            required
+            placeholder="Entrez le prix du produit"
+          />
+        </div>
 
-          <div>
-            <label className="block mb-2">Image du produit:</label>
-            <input
-              type="file"
-              className="w-full p-2 border rounded"
-              accept="image/*"
-              onChange={(e) => setProductImage(e.target.files[0])}
-            />
-          </div>
+        <div className="space-y-2">
+          <label className="block text-gray-700 font-semibold">Description du produit:</label>
+          <input
+            type="text"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            value={productDescription}
+            onChange={(e) => setProductDescription(e.target.value)}
+            required
+            placeholder="Entrez une description pour le produit"
+          />
+        </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
-          >
-            {loading ? "Mise à jour..." : "Mettre à jour le produit"}
-          </button>
-        </form>
-      </div>
+        <div className="space-y-2">
+          <label className="block text-gray-700 font-semibold">Image du produit:</label>
+          <input
+            type="file"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            accept="image/*"
+            onChange={(e) => setProductImage(e.target.files[0])}
+          />
+        </div>
+
+        <div className="text-center">
+          <Button theme="primary">{loading ? "Mise à jour..." : "Mettre à jour le produit"}</Button>
+        </div>
+      </form>
     </Container>
   );
 };
