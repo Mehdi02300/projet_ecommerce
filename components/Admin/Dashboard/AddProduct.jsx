@@ -27,7 +27,6 @@ export default function AddProduct() {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
 
     try {
       const imageUrl = await uploadProductImage(productImage);
@@ -43,14 +42,8 @@ export default function AddProduct() {
         imageUrl: imageUrl,
       };
 
-      // Utiliser addDoc au lieu de setDoc pour générer un ID automatique
       await addDoc(collection(db, "products"), productData);
-
-      setProductName("");
-      setProductPrice("");
-      setProductDescription("");
-      setProductImage(null);
-      window.location.reload();
+      router.push("/admin/accueil");
     } catch (err) {
       console.error("Erreur lors de l'ajout du produit:", err);
       setError("Erreur lors de l'ajout du produit.");
