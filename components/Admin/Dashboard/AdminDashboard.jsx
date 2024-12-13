@@ -7,7 +7,6 @@ import { signOut } from "firebase/auth";
 import { auth, db } from "@/db/firebaseConfig";
 import Product from "./Product";
 import Container from "@/components/ui/Container";
-import AddProduct from "./AddProduct";
 import Button from "@/components/ui/Button";
 
 const AdminDashboard = () => {
