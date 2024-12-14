@@ -1,6 +1,6 @@
 const CardHero = () => {
   return (
-    <div className="flex items-center gap-1 md:gap-8 overflow-hidden">
+    <div className="flex items-center gap-2 md:gap-8">
       {cards.map((card, index) => (
         <div key={index}>
           <img
@@ -8,11 +8,11 @@ const CardHero = () => {
             alt={card.alt}
             className={`
           h-auto w-[100vw] rounded-t-full
-          ${index === 0 && "rotate-[-15deg] translate-y-[30%]"}
+          ${index === 0 && "hidden md:block rotate-[-15deg] translate-y-[30%]"}
           ${index === 1 && "rotate-[-8deg] translate-y-[25%]"}  
           ${index === 2 && "transform translate-y-[20%]"}
           ${index === 3 && "rotate-[8deg] translate-y-[25%]"} 
-          ${index === 4 && "rotate-[15deg] translate-y-[30%]"} 
+          ${index === 4 && "hidden md:block rotate-[15deg] translate-y-[30%]"} 
         `}
           />
         </div>
